@@ -9,9 +9,10 @@
 // Datei: HalloWelt.java
 public class HalloWelt {
   // main() ist der Startpunkt
-  public static void main (String[] args)
+  public static void main (String[] args){
     // gibt "Hallo Welt" auf der Konsole aus
     System.out.println("Hallo Welt");
+  }
 }
 ```
 
@@ -196,9 +197,9 @@ for (int number: numbers) {
 
 > WHILE LOOP STATEMENT
 ```java
-  while(Abbruchbedingung){
-    // code
-  }
+while(Abbruchbedingung){
+  // code
+}
 ```
 **Beispiel:**
 
@@ -219,9 +220,9 @@ while (i <= 10){
 Fußgesteuert -> der Block wird immer mind. einmal ausgeführt.
 
 ```java
-  do{
-    // code
-  } while(Abbruchbedingung);
+do{
+  // code
+} while(Abbruchbedingung);
 ```
 
 **Beispiel:**
@@ -229,18 +230,18 @@ Fußgesteuert -> der Block wird immer mind. einmal ausgeführt.
 _Zähle von 0 bis 10 in Einer-Schritten und gib die Zahl auf der Konsole aus_:
 
 ```java
-    int i = 0;
-    do{
-      System.out.println(i);
-      i++;
-    } while(i <= 10);
+int i = 0;
+do{
+  System.out.println(i);
+  i++;
+} while(i <= 10);
 ```
 
 ## ARRAY
 
 ```java
-    int[]           ai;        // array of int
-    Object[]        ao;        // array of Object
+int[]           ai;        // array of int
+Object[]        ao;        // array of Object
 ```
 
 > DECLARATION OF ARRAY VARIABLE
@@ -272,14 +273,14 @@ String[] aas    = { "array", "of", "String", };
 ### OBJECT
 
 ```java
-  // Deklaration einer Variable vom Objekt-Typ "String"
-  String s;
+// Deklaration einer Variable vom Objekt-Typ "String"
+String s;
 
-  // Konstruktur aufrufen
-  s = new String ("Hallo Welt");
+// Konstruktur aufrufen
+s = new String ("Hallo Welt");
 
-  // Klassenmethode ausführen die sich auf den Inhalt der Variable bezieht
-  char c = s.chartAt(4);
+// Klassenmethode ausführen die sich auf den Inhalt der Variable bezieht
+char c = s.chartAt(4);
 ```
 ### Instanzvariablen
 
@@ -291,24 +292,24 @@ String[] aas    = { "array", "of", "String", };
 
 **Beispiel: Einfache Klasse:**
 ```java
-  public class Fahrzeug {
-    private String name;
-  }
+public class Fahrzeug {
+  private String name;
+}
 ```
 
 **Beispiel Klasse mit getter und setter:**
 ```java
-  public class Fahrzeug {
-    private String name;
+public class Fahrzeug {
+  private String name;
 
-    public void setName(String name){
-      this.name = name;
-    }
-
-    public String getName(){
-      return this.name;
-    }
+  public void setName(String name){
+    this.name = name;
   }
+
+  public String getName(){
+    return this.name;
+  }
+}
 ```
 
 ### Methoden
