@@ -283,9 +283,31 @@ String[] aas    = { "array", "of", "String", };
 ```
 ### Instanzvariablen
 
+* Instanzvariablen sind nur innerhalb der Klasse _sichtbar_
+* mit Hilfe von _getter_ und _setter_ können diese abgerufen oder verändert werden
+  * `setter` sind vom typ `void` und sollten als Argument den Datentyp der jeweiligen Instanzvariable haben
+  * `getter` geben den Datentyp zurück der Instanzvariable und sollten keine Argumente haben
+* durch den `this` Operator kann man auf die Instanzvariablen direkt zugreifen
+
+**Beispiel: Einfache Klasse:**
 ```java
   public class Fahrzeug {
     private String name;
+  }
+```
+
+**Beispiel Klasse mit getter und setter:**
+```java
+  public class Fahrzeug {
+    private String name;
+
+    public void setName(String name){
+      this.name = name;
+    }
+
+    public String getName(){
+      return this.name;
+    }
   }
 ```
 
@@ -343,5 +365,169 @@ public class Fahrzeug {
   public void fahr(){
     // code
   }
+}
+```
+### Klassen Deklaration mit Vererbung
+```java
+class Auto extends Fahrzeug {
+  private String nummernSchild;
+
+  public void abs(){
+    // code
+  }
+}
+```
+* Die Klasse `Auto` ist eine Unterklasse von der Klasse `Fahrzeug` (Spezialisierung)
+* Die Klasse `Auto` übernimmt automatisch alle Funktionen und Attribute der Klasse `Fahrzeug`
+* Die Klasse `Auto` kann die Funktionen der Klasse `Fahrzeug` erweitern und/oder überschreiben
+* mit `super` können Methoden und Variablen der Basis-Klasse direkt aufgerufen werden
+  * dies gilt auch für den Konstruktor
+#### Konstruktoren
+
+* Jede Klasse hat automatisch einen gleichnamigen Konstruktor
+  * dieser kann explizt sein (angegeben) oder implizit (nicht angegeben) sein
+* Der Konstruktor wird automatisch beim Erstellen eines Objekt ausgeführt
+* Konstruktoren haben keinen `return` Wert
+
+
+**Beispiel:**
+```java
+public class Fahrzeug {
+  private String name;
+
+  // Konstruktor ohne Argumente
+  public Fahrzeug(){
+    // code
+  }
+
+  // Konstruktor mit Argumenten
+  public Fahrzeug(String name){
+    // code
+    this.name = name;
+  }
+
+}
+```
+
+### Polymorphismus
+
+* Die _Vielfältigkeit_ bei der Objekte in verschiedenen Situationen verschieden reagieren können
+#### Variante 1: Methodenüberladung
+* Deklaration einer Methode mit verschiedenen übergabe Parametern
+* je nachdem mit wie viel Parametern die Methode aufgerufen wird, verändert sie das _Verhalten_ der Klasse
+
+```java
+public class Fahrzeug {
+  private String name;
+
+  // Methode ohne Argumente
+  public faehrt(){
+    // code
+  }
+
+  // Methode mit Argumenten
+  public faehrt(String Richtung){
+    // code
+  }
+
+  // Methode mit Argumenten
+  public faehrt(String Richtung, int Geschwindigkeit){
+    // code
+  }
+
+}
+```
+#### Variante 2: Methodenüberschreibung
+* Die Subklasse (Kindklasse) kann Methoden der Basisklasse (Eltern-Klasse) überschreiben
+
+> Basis-Klasse Fahrzeug
+```java
+public class Fahrzeug {
+  private String name;
+
+  // Methode ohne Argumente
+  public faehrt(){
+    // code
+    System.out.println("Das Fahrzeug fährt");
+  }
+}
+```
+
+> Sub-Klasse erbt alle Funktionen und überschreibt die "faehrt" Methode
+```java
+public class Auto implements Fahrzeug{
+
+  @Override
+  public void faehrt(){
+    System.out.println("Das Auto fährt");
+  }
+
+}
+```
+
+> Beispiel aufruf
+```java
+// Basis-Klasse
+// gibt "Das Fahrzeug fährt" auf der Konsole aus
+Fahrzeug fahrzeug = new Fahrzeug();
+fahrzeug.faehrt();
+
+// Sub-Klasse
+// gibt "Das Auto fährt" auf der Konsole aus
+Fahrzeug auto = new Auto();
+auto.faehrt();
+```
+
+### Abstraktion
+
+* Abstraktion _versteckt_ Implementierungsdetails und gibt nur die Schnittstellen bekannt
+* Erbende Klasse müssen diese Schnittstellen selbst implementieren
+* Abstraktionen können sein:
+  1. Abstract Class
+  2. Interface
+  3. Abstract Methods (in einer Klasse)
+
+#### Abstract Class
+* Eine _abstract class_ muss mit dem Schlüsselwort `abstract` deklariert werden
+* Die Klasse kann `abstract` und `non-abstract` Methoden beinhalten
+* Kann nicht Initialisiert werden
+* Kann Konstruktoren und `static` Methoden beinhalten
+
+
+```java
+abstract class Blume{
+  // Abstrakte Methode "duft()" - muss dann von jeder Subklasse implementiert werden
+  abstract String duft();
+
+  // nicht abstrakte Methode kann von jeder Subklasse genutzt werden
+  public String pflanzen(){
+      System.out.println("Ich werden gepflanzt");
+  }
+}
+
+public class Rose extends Blume{
+  // Implementierung der "duft()" Methode
+  private String duft(){
+    System.out.println("Rosen duften gut!");
+  }
+}
+```
+
+#### Interface
+* `Interface` ist a blueprint (Bauplan) einer **class**.
+* Beinhaltet nur Abstrakte Methoden
+
+**Beispiel:**
+```java
+// Interface gibt die Methoden vor die Implementiert werden müssen
+interface Papier{
+    void drucken();
+}
+
+// Sub-Klasse implementiert die Vorgaben
+public class A4 implements Papier{
+    public void drucken(){
+      System.out.println("Seite wird gedruckt");
+    }
 }
 ```
